@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-21T09:54:59.434Z</updated>
+    <updated>2020-05-21T11:19:37.795Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -16,9 +16,20 @@
         <link href="https://JIANG-HS.github.io/post/Wj5XKIGfu/">
         </link>
         <updated>2020-05-21T06:21:41.000Z</updated>
-        <content type="html"><![CDATA[<ol>
-<li></li>
-</ol>
+        <content type="html"><![CDATA[<p>#简介<br>
+梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。<br>
+<img src="D:%5Cphoto%22%E5%85%AC%E5%BC%8F%22" alt="alt" loading="lazy"></p>
+<p>缺点：1.靠近极小值时收敛速度减慢。<br>
+2.直线搜索时可能会产生一些问题。<br>
+3.可能会“之字形”地下降。</p>
+<figure data-type="image" tabindex="1"><img src="%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" alt="alt" title="title" loading="lazy"></figure>
+<h1 id=""></h1>
+<p>#梯度下降法三兄弟（BGD，SGD，MBGD）<br>
+##1.批量梯度下降法（Batch Gradient Descent）<br>
+批量梯度下降法每次都使用所有的样本进行参数的更新，即<br>
+L(w)=12NΣNi=1(fM(xi,w)−y)2<br>
+##2.随机梯度下降法（Stochastic Gradient Descent）</p>
+<p>##3.小批量梯度下降法（Mini-batch Gradient Descent）</p>
 ]]></content>
     </entry>
     <entry>
