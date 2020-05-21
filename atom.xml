@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-21T06:24:21.776Z</updated>
+    <updated>2020-05-21T09:46:44.410Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -22,12 +22,15 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[第一篇文章]]></title>
+        <title type="html"><![CDATA[Anaconda更新和Spyder更新的指令]]></title>
         <id>https://JIANG-HS.github.io/post/belQdrZZ2/</id>
         <link href="https://JIANG-HS.github.io/post/belQdrZZ2/">
         </link>
         <updated>2020-05-19T14:53:57.000Z</updated>
-        <content type="html"><![CDATA[<p>内容</p>
+        <content type="html"><![CDATA[<p>首先打开Anaconda Prompt.exe<br>
+1.更新conda(更新Anaconda前需要先更新conda)：conda update conda<br>
+2.更新aconda：conda update anaconda<br>
+3.更新spyder：conda update spyder</p>
 ]]></content>
     </entry>
     <entry>
