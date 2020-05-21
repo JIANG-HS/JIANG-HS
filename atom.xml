@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-19T14:55:16.498Z</updated>
+    <updated>2020-05-21T06:23:31.478Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://JIANG-HS.github.io/images/avatar.png</logo>
     <icon>https://JIANG-HS.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, JIANG-HS</rights>
+    <entry>
+        <title type="html"><![CDATA[梯度下降]]></title>
+        <id>https://JIANG-HS.github.io/post/Wj5XKIGfu/</id>
+        <link href="https://JIANG-HS.github.io/post/Wj5XKIGfu/">
+        </link>
+        <updated>2020-05-21T06:21:41.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li></li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第一篇文章]]></title>
         <id>https://JIANG-HS.github.io/post/belQdrZZ2/</id>
