@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-21T11:19:37.795Z</updated>
+    <updated>2020-05-21T13:39:29.903Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -16,20 +16,24 @@
         <link href="https://JIANG-HS.github.io/post/Wj5XKIGfu/">
         </link>
         <updated>2020-05-21T06:21:41.000Z</updated>
-        <content type="html"><![CDATA[<p>#简介<br>
-梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。<br>
-<img src="D:%5Cphoto%22%E5%85%AC%E5%BC%8F%22" alt="alt" loading="lazy"></p>
-<p>缺点：1.靠近极小值时收敛速度减慢。<br>
-2.直线搜索时可能会产生一些问题。<br>
+        <content type="html"><![CDATA[<h1 id="简介">简介</h1>
+<p>梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。</p>
+<h2 id="核心公式">核心公式：</h2>
+<p><img src="https://JIANG-HS.github.io/post-images/1590065715762.webp" alt="" loading="lazy"><br>
+其中α为步长，也叫学习率。公式可以理解为每更新一次位置后，根据当前位置再计算下一个位置，直到求到极小值。</p>
+<h2 id="相关概念">相关概念</h2>
+<p>损失函数（Loss Function）：用来描述一个系统在不同参数下的损失，通俗地说就是计算误差。</p>
+<h2 id="缺点">缺点：</h2>
+<p>1.靠近极小值时收敛速度减慢；<br>
+2.直线搜索时可能会产生一些问题；<br>
 3.可能会“之字形”地下降。</p>
-<figure data-type="image" tabindex="1"><img src="%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80" alt="alt" title="title" loading="lazy"></figure>
-<h1 id=""></h1>
-<p>#梯度下降法三兄弟（BGD，SGD，MBGD）<br>
-##1.批量梯度下降法（Batch Gradient Descent）<br>
-批量梯度下降法每次都使用所有的样本进行参数的更新，即<br>
-L(w)=12NΣNi=1(fM(xi,w)−y)2<br>
-##2.随机梯度下降法（Stochastic Gradient Descent）</p>
-<p>##3.小批量梯度下降法（Mini-batch Gradient Descent）</p>
+<h1 id="梯度下降三兄弟bgdsgdmbgd">梯度下降三兄弟（BGD，SGD，MBGD）</h1>
+<h2 id="1批量梯度下降法batch-gradient-descent">1.批量梯度下降法（Batch Gradient Descent）</h2>
+<p>批量梯度下降法每次都使用训练集中的所有样本更新参数。优点：可以得出全局最优解。缺点：样本数据集大时，训练速度慢。</p>
+<h2 id="2随机梯度下降法stochastic-gradient-descent">2.随机梯度下降法（Stochastic Gradient Descent）</h2>
+<p>随机梯度下降法每次更新都从样本随机选择1组数据。优点：训练速度快。缺点：过程杂乱，准确度下降。</p>
+<h2 id="3小批量梯度下降法mini-batch-gradient-descent">3.小批量梯度下降法（Mini-batch Gradient Descent）</h2>
+<p>小批量梯度下降法对包含n个样本的数据集进行计算。综合了上述两种方法，既保证了训练速度快，又保证了准确度。</p>
 ]]></content>
     </entry>
     <entry>
