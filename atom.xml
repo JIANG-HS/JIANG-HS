@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-22T08:25:56.928Z</updated>
+    <updated>2020-05-22T08:28:44.638Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -31,7 +31,7 @@
 初始学习率为：α=0.1<br>
 函数的梯度为：▽J(θ)=&lt;2θ<sub>1</sub>,2θ<sub>2</sub>&gt;<br>
 进行多次迭代：<br>
-<img src="https://JIANG-HS.github.io/post-images/1590135904089.png" alt="" loading="lazy"></p>
+<img src="https://JIANG-HS.github.io/post-images/1590136103857.jpg" alt="" loading="lazy"></p>
 <h3 id="相关概念">相关概念</h3>
 <ul>
 <li><strong>损失函数</strong>（Loss Function）：用来描述一个系统在不同参数下的损失，通俗地说就是计算误差。</li>
