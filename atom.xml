@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-22T08:28:44.638Z</updated>
+    <updated>2020-05-22T10:12:19.088Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -74,8 +74,8 @@ loss = []
 for num in range(10000):
     count += 1
     diss = 0   #误差
-    deriv0 = 0 #损失函数J(θ)对θ0的导数
-    deriv1 = 0 #损失函数J(θ)对θ1的导数
+    deriv0 = 0 #导数
+    deriv1 = 0 #导数
     for i in range(m):
         deriv0 += (theta0+theta1*x[i]-y[i])/m
         deriv1 += ((theta0+theta1*x[i]-y[i])/m)*x[i]
@@ -87,7 +87,7 @@ for num in range(10000):
 
     #求损失函数J(θ)
     for i in range(m):
-        diss = diss + (1/m)*pow((theta0+theta1*x[i]-y[i]),2)
+        diss = diss + (1/(2*m))*pow((theta0+theta1*x[i]-y[i]),2)
     loss.append(diss)
 
     #如果误差已经很小，则退出循环
@@ -135,8 +135,8 @@ loss = []
 for num in range(10000):
     count += 1
     diss = 0   #误差
-    deriv0 = 0 #损失函数J(θ)对θ0的导数
-    deriv1 = 0 #损失函数J(θ)对θ1的导数
+    deriv0 = 0 #导数
+    deriv1 = 0 #导数
     for i in range(m):
         deriv0 += (theta0+theta1*x[i]-y[i])/m
         deriv1 += ((theta0+theta1*x[i]-y[i])/m)*x[i]
@@ -148,7 +148,7 @@ for num in range(10000):
 
     #求损失函数J(θ)
     rand_i = random.randrange(0,m)
-    diss = diss + (1/m)*pow((theta0+theta1*x[rand_i]-y[rand_i]),2)
+    diss = diss + (1/(2*m))*pow((theta0+theta1*x[rand_i]-y[rand_i]),2)
     loss.append(diss)
 
     #如果误差已经很小，则退出循环
@@ -171,8 +171,8 @@ plt.show()
 </code></pre>
 <p><strong>注意</strong>：因为是随机的，所以每次的结果会不一样。<br>
 输出结果：<br>
-本次迭代次数为：142次，最终得到theta0=92.76939458854467，theta1=6.059673972307452<br>
-本次迭代得到的回归函数是：y=92.76939458854467+6.059673972307452*x<br>
+本次迭代次数为：159次，最终得到theta0=94.02334615793364，theta1=5.968813991236714<br>
+本次迭代得到的回归函数是：y=94.02334615793364+5.968813991236714*x<br>
 <img src="https://JIANG-HS.github.io/post-images/1590134254515.png" alt="" loading="lazy"><br>
 <img src="https://JIANG-HS.github.io/post-images/1590134259162.png" alt="" loading="lazy"></p>
 <h3 id="3小批量梯度下降">3.小批量梯度下降</h3>
@@ -197,8 +197,8 @@ loss = []
 for num in range(10000):
     count += 1
     diss = 0   #误差
-    deriv0 = 0 #损失函数J(θ)对θ0的导数
-    deriv1 = 0 #损失函数J(θ)对θ1的导数
+    deriv0 = 0 #导数
+    deriv1 = 0 #导数
     for i in range(m):
         deriv0 += (theta0+theta1*x[i]-y[i])/m
         deriv1 += ((theta0+theta1*x[i]-y[i])/m)*x[i]
@@ -209,12 +209,12 @@ for num in range(10000):
         theta1 = theta1 - alpha*((theta0+theta1*x[i]-y[i])/m)*x[i]
 
     #求损失函数J(θ)
-    rand_m = []
+    rand_ls = list(range(3))
     for i in range(3):
         rand_i = random.randrange(0,m)
-        rand_m.append(rand_i)
-    for i in rand_m:
-        diss = diss + (1/m)*pow((theta0+theta1*x[i]-y[i]),2)
+        rand_ls[i] = rand_i
+    for i in rand_ls:
+        diss = diss + (1/(2*m))*pow((theta0+theta1*x[i]-y[i]),2)
     loss.append(diss)
 
     #如果误差已经很小，则退出循环
