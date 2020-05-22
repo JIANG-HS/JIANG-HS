@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-21T13:39:29.903Z</updated>
+    <updated>2020-05-22T05:26:16.695Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -18,11 +18,13 @@
         <updated>2020-05-21T06:21:41.000Z</updated>
         <content type="html"><![CDATA[<h1 id="简介">简介</h1>
 <p>梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。</p>
-<h2 id="核心公式">核心公式：</h2>
-<p><img src="https://JIANG-HS.github.io/post-images/1590065715762.webp" alt="" loading="lazy"><br>
-其中α为步长，也叫学习率。公式可以理解为每更新一次位置后，根据当前位置再计算下一个位置，直到求到极小值。</p>
+<h2 id="核心公式">核心公式</h2>
+<figure data-type="image" tabindex="1"><img src="https://JIANG-HS.github.io/post-images/1590110259123.webp" alt="" loading="lazy"></figure>
+<p>其中α为步长，也叫学习率。公式可以理解为每更新一次位置后，根据当前位置再计算下一个位置，直到求到极小值。</p>
 <h2 id="相关概念">相关概念</h2>
-<p>损失函数（Loss Function）：用来描述一个系统在不同参数下的损失，通俗地说就是计算误差。</p>
+<p>1.<strong>损失函数</strong>（Loss Function）：用来描述一个系统在不同参数下的损失，通俗地说就是计算误差。<br>
+2.<strong>代价函数</strong>（cost function）：是整个训练集上所有样本误差的平均。本质上看，和损失函数是同一样的。<br>
+3.<strong>目标函数</strong>（(objective function）：简单的说，就是你求解后所得出的那个函数。在求解前函数是未知的，按照你的思路将已知条件利用起来，去求解未知量的函数关系式，即为目标函数。</p>
 <h2 id="缺点">缺点：</h2>
 <p>1.靠近极小值时收敛速度减慢；<br>
 2.直线搜索时可能会产生一些问题；<br>
