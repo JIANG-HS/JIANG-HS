@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-05-22T10:12:19.088Z</updated>
+    <updated>2020-05-30T03:39:37.216Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
@@ -10,6 +10,96 @@
     <logo>https://JIANG-HS.github.io/images/avatar.png</logo>
     <icon>https://JIANG-HS.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, JIANG-HS</rights>
+    <entry>
+        <title type="html"><![CDATA[神经网络]]></title>
+        <id>https://JIANG-HS.github.io/post/1J03ETULG/</id>
+        <link href="https://JIANG-HS.github.io/post/1J03ETULG/">
+        </link>
+        <updated>2020-05-29T11:37:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-神经网络的相关描述">一、神经网络的相关描述</h1>
+<h2 id="1神经网络">1.神经网络</h2>
+<p>人工神经网络（Artificial Neural Network，简写为ANNs），简称<strong>神经网络</strong>（neural network，简写为NN），是一种通过模仿动物神经网络的特征，进行分布式并行信息处理的<strong>算法数学模型</strong>。通过调整大量节点之间相互连接的关系来达到信息处理的目的，拥有自学习和自适应的能力。</p>
+<p>一个神经网络结构通常包括输入层、权重、隐层、激活函数、输出层等。</p>
+<p>下面是一个隐层为两层的神经网络结构：<br>
+<img src="https://JIANG-HS.github.io/post-images/1590803066385.jpg" alt="" loading="lazy"></p>
+<p>优点：<br>
+第一，具有自学习功能。例如实现图像识别时，只在先把许多不同的图像样板和对应的应识别的结果输入人工神经网络，网络就会通过自学习功能，慢慢学会识别类似的图像。自学习功能对于预测有特别重要的意义。预期未来的人工神经网络计算机将为人类提供经济预测、市场预测、效益预测，其应用前途是很远大的。<br>
+第二，具有联想存储功能。用人工神经网络的反馈网络就可以实现这种联想。<br>
+第三，具有高速寻找优化解的能力。寻找一个复杂问题的优化解，往往需要很大的计算量，利用一个针对某问题而设计的反馈型人工神经网络，发挥计算机的高速运算能力，可能很快找到优化解。</p>
+<h2 id="2激活函数">2.激活函数</h2>
+<p>所谓<strong>激活函数</strong>(Activation Function)，就是在人工神经网络的神经元上运行的函数，负责将神经元的输入映射到下一个神经元或输出端。<br>
+<strong>使用激活函数的目的</strong>：如果不使用激活函数，每一层输出都是上一层输入的线性关系，这样就无法对非线性模型进行准确分析；使用激活函数后，就给神经元加入了非线性元素，使得神经网络更加灵活，可以应用在非线性模型中。<br>
+<strong>常见的激活函数</strong>：<br>
+①Sigmoid函数：也称S型生长曲线，现在的神经网络已经基本不再使用这个函数。函数图像如下：<br>
+<img src="https://JIANG-HS.github.io/post-images/1590804552355.png" alt="" loading="lazy"><br>
+<img src="https://JIANG-HS.github.io/post-images/1590804559256.jpg" alt="" loading="lazy"><br>
+②Tanh函数：是一个双曲正切函数。函数图像如下：<br>
+<img src="https://JIANG-HS.github.io/post-images/1590804750456.png" alt="" loading="lazy"><br>
+<img src="https://JIANG-HS.github.io/post-images/1590804754119.jpg" alt="" loading="lazy"><br>
+③ReLU函数(The Rectified Linear Unit)：现常用于隐层神经元输出。函数图像如下：<br>
+<img src="https://JIANG-HS.github.io/post-images/1590805753654.png" alt="" loading="lazy"><br>
+<img src="https://JIANG-HS.github.io/post-images/1590805765708.png" alt="" loading="lazy"></p>
+<h2 id="3前向传播">3.前向传播</h2>
+<p>前向传播就是从输入层到隐层再到输出层的过程，输入层通过计算将数据传递给第一个隐层，再将第一隐层作为输入传递给下一层，直到传到输出层。其中每次传递都需要经过激活函数。</p>
+<h2 id="4反向传播">4.反向传播</h2>
+<p>每进行了一次前向传播之后，计算输出层与目标函数之间的误差，再将结果代入激活函数的导数计算之后，返回给离输出层最近的隐层，再计算当前隐层与上一层之间的误差，然后逐渐往回传播，直到第一个隐层为止。进行一次反向传播之后，还需要对权重参数进行更新。</p>
+<h2 id="5drop-out">5.DROP-OUT</h2>
+<p>神经网络是一个全连接操作，当数据过多时，计算速度会很慢，所以当数据量大时通过一个DROP-OUT的方法来提高速率。DROP-OUT时，每一轮前向传播和反向传播都只随机选用部分数据进行操作，但这些部分数据之间依然还是全连接的。<br>
+<img src="https://JIANG-HS.github.io/post-images/1590808706033.jpg" alt="" loading="lazy"></p>
+<h1 id="二-简单代码实现">二、简单代码实现</h1>
+<pre><code>import numpy as np  
+
+#定义激活函数，这里使用到的是Sigmoid函数
+def nonlin(x,deriv=False):  
+    if(deriv==True):  #定义Sigmoid的导数
+        return x*(1-x)  
+    return 1/(1+np.exp(-x)) #Sigomid函数
+
+#定义输入数据      
+X = np.array([[0,0,1],  
+            [0,1,1],  
+            [1,0,1],  
+            [1,1,1]]) 
+#print (X.shape) 
+
+#目标比对模型                  
+y = np.array([[0],  
+            [1],  
+            [1],  
+            [0]])  
+#print (y.shape)
+np.random.seed(1)  
+
+# randomly initialize our weights with mean 0  
+w0 = 2*np.random.random((3,4)) - 1  
+w1 = 2*np.random.random((4,1)) - 1
+#print (w0)
+#print (w1)  
+#print (w0.shape)
+#print (w1.shape)
+
+for j in range(60000):
+    #前向传播，l0为输入层，l1为隐层，l2为输出层
+    l0 = X  
+    l1 = nonlin(np.dot(l0,w0))  #矩阵运算
+    l2 = nonlin(np.dot(l1,w1))
+    
+    l2_error = y - l2  
+    #打印误差值
+    if (j% 10000) == 0:  
+        print (&quot;Error:&quot; + str(np.mean(np.abs(l2_error))))  
+
+    #反向传播          
+    l2_delta = l2_error * nonlin(l2,deriv=True)       
+    l1_error = l2_delta.dot(w1.T)  
+    l1_delta = l1_error * nonlin(l1,deriv=True)  
+
+    #更新权重
+    w1 += l1.T.dot(l2_delta)  
+    w0 += l0.T.dot(l1_delta)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[梯度下降]]></title>
         <id>https://JIANG-HS.github.io/post/Wj5XKIGfu/</id>
