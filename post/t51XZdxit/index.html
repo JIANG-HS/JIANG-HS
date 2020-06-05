@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>K-means算法 | JIANG-HS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://JIANG-HS.github.io/favicon.ico?v=1591348577679">
+<link rel="stylesheet" href="https://JIANG-HS.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="一、K-means介绍
+K-means算法，也称为K-平均或者K-均值，是一种无监督的聚类算法。对于给定的样本集，按照样本之间的距离大小，将样本划分为K个簇，让簇内的点尽量紧密的连接在一起，而让簇间的距离尽量的大。K-means是一种使用广..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://JIANG-HS.github.io">
+        <img src="https://JIANG-HS.github.io/images/avatar.png?v=1591348577679" class="site-logo">
+        <h1 class="site-title">JIANG-HS</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://JIANG-HS.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">K-means算法</h2>
+            <div class="post-date">2020-05-31</div>
+            
+            <div class="post-content" v-pre>
+              <h1 id="一-k-means介绍">一、K-means介绍</h1>
+<p>K-means算法，也称为K-平均或者K-均值，是一种无监督的聚类算法。对于给定的样本集，按照样本之间的距离大小，将样本划分为K个簇，让簇内的点尽量紧密的连接在一起，而让簇间的距离尽量的大。K-means是一种使用广泛的最基础的聚类算法，通常作为学习聚类算法时的第一个算法。<br>
+其他的聚类算法：K-medoids、k-modes、Clara、Clarans等</p>
+<p><strong>聚类</strong>：物理或抽象对象的集合分成由类似的对象组成的多个类的过程被称为聚类。由聚类所生成的簇是一组数据对象的集合，这些对象与同一个簇中的对象彼此相似，与其他簇中的对象相异。</p>
+<p><strong>簇</strong>：本算法中可以理解为，把数据集聚类成n类，即为n个簇。</p>
+<p><strong>欧几里得距离公式</strong>（也叫欧式距离）：<img src="https://JIANG-HS.github.io/post-images/1591346947075.jpg" alt="" loading="lazy"></p>
+<h1 id="二-算法步骤">二、算法步骤</h1>
+<p>1.给定一个待处理的数据集；<br>
+2.记K个簇的中心分别为a<sub>1</sub>,a<sub>2</sub>,...,a<sub>k</sub>;每个簇的样本数量为N<sub>1</sub>,N<sub>2</sub>,...,N<sub>3</sub>;<br>
+3.通过欧几里得距离公式计算各点到各质心的距离，把每个点划分给与其距离最近的质心，从而初步把数据集分为了K类；<br>
+4.更新质心：通过下面的公式来更新每个质心。就是，新的质心的值等于当前该质心所属簇的所有点的平均值。<br>
+<img src="https://JIANG-HS.github.io/post-images/1591346626448.jpg" alt="" loading="lazy"><br>
+5.重复步骤3和步骤4，直到质心不再变化或者达到最大迭代次数。</p>
+<h1 id="三-图形展示">三、图形展示</h1>
+<p>假设K=2，即有两个簇，绿色为最初的样本数据集（图a），红色标记和蓝色标记分别为两个质心（图b）。通过计算样本到红色质心和蓝色质心的距离，实现对样本的分类，然后再不断地更新质心的位置，最终得到了一个比较理想的聚类结果（图f）。<br>
+<img src="https://JIANG-HS.github.io/post-images/1591347084111.png" alt="" loading="lazy"><br>
+顺序为：a→b→c→d→e→f<br>
+可以看到，整个算法是一个不断更新质心和簇的过程。</p>
+<h1 id="四-代码实现">四、代码实现</h1>
+<pre><code>import matplotlib.pyplot as plt
+from random import uniform#randint
+import numpy as np
+from math import sqrt
+
+#创建一个数据集。注意：本代码的数据集是随机的
+m=40
+x = list(range(m))
+y = list(range(m))
+for i in range(m):
+    if i &lt; m/2:
+        x[i] = uniform(1,5)
+        y[i] = uniform(1,5)
+    else:
+        x[i] = uniform(6,10)
+        y[i] = uniform(6,10)
+#将创建的数据集画成散点图
+plt.scatter(x,y)
+plt.xlim(0,11)
+plt.ylim(0,11)
+#plt.show()
+
+#这里直接给定质心了，为了看起来更明显，当然随机是最好的
+cent1 = [3,9]
+cent2 = [8,3]
+plt.scatter(cent1[0],cent1[1],marker='*')
+plt.scatter(cent2[0],cent2[1],marker='*')
+plt.show()
+
+#计算欧几里得距离
+def distEclud(a,b,arrx,arry):
+    d1 = arrx-a
+    d2 = arry-b
+    dist = sqrt( pow(d1,2) + pow(d2,2) )
+    return dist
+
+#核心部分
+mark = np.zeros((1,m))  #标记矩阵，初始化全为0
+for n in range(10):
+    #对数据集的每一个点进行标记
+    for i in range(m):
+        dist1 = distEclud(cent1[0],cent1[1],x[i],y[i])
+        dist2 = distEclud(cent2[0],cent2[1],x[i],y[i])
+        if dist1 &gt; dist2:
+            mark[0][i] = 1   #1表示离质心cent1近，0表示离cent2近
+        else:
+            mark[0][i] = 0
+    
+    #更新质心
+    sumx1 = sumx2 = sumy1 = sumy2 = 0
+    sum_cent1 = sum_cent2 = 0
+    for i in range(m):
+        if mark[0][i] == 1:
+            sumx1 += x[i]
+            sumy1 += y[i]
+            sum_cent1 += 1
+        else:
+            sumx2 += x[i]
+            sumy2 += y[i]
+            sum_cent2 += 1
+    ls1 = ls2 = np.zeros((1,2))
+    ls1[0][0] = cent1[0]
+    ls1[0][1] = cent1[1]
+    ls2[0][0] = cent2[0]
+    ls2[0][1] = cent2[1]   #为了方便后面对质心的判断
+    cent1[0] = sumx1 / sum_cent1
+    cent1[1] = sumy1 / sum_cent1
+    cent2[0] = sumx2 / sum_cent2
+    cent2[1] = sumy2 / sum_cent2
+    
+    #判断质心是否已经稳定不变
+    error_dist1 = distEclud(cent1[0],cent1[1],ls1[0][0],ls1[0][1])
+    error_dist2 = distEclud(cent2[0],cent2[1],ls2[0][0],ls2[0][1])
+    if error_dist1 &lt;= 0.001 and error_dist2 &lt;= 0.001:
+        break
+
+#绘制散点图
+col = ['red','green']
+for i in range(m):
+    if mark[0][i] == 1:
+        plt.scatter(x[i],y[i],color=col[0])
+    else:
+        plt.scatter(x[i],y[i],color=col[1])
+plt.scatter(cent1[0],cent1[1],color=col[0],marker='*')
+plt.scatter(cent2[0],cent2[1],color=col[1],marker='*')
+plt.show()
+</code></pre>
+<p>运行结果（不唯一）：<br>
+<img src="https://JIANG-HS.github.io/post-images/1591348465703.png" alt="" loading="lazy"><br>
+<img src="https://JIANG-HS.github.io/post-images/1591348301269.png" alt="" loading="lazy"></p>
+<h1 id="五-k-means-算法存在的问题">五、K-means 算法存在的问题</h1>
+<p>由于K-means算法简单且易于实现，因此K-means算法得到了很多的应用，但是从K-means算法的过程中可以发现两个问题：<br>
+1.簇中心的个数K是需要事先给定的，所以在处理未知数据时就无从下手。<br>
+2.K-means算法在聚类之前，需要随机初始化K个质心，如果质心选择不好，最后的聚类结果可能会比较差。</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://JIANG-HS.github.io/post/1J03ETULG/">
+                  <h3 class="post-title">
+                    神经网络
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
