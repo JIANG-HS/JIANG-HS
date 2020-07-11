@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://JIANG-HS.github.io</id>
     <title>JIANG-HS</title>
-    <updated>2020-07-11T09:41:24.456Z</updated>
+    <updated>2020-07-11T09:48:56.045Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://JIANG-HS.github.io"/>
     <link rel="self" href="https://JIANG-HS.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>姜还是老的辣</subtitle>
     <logo>https://JIANG-HS.github.io/images/avatar.png</logo>
     <icon>https://JIANG-HS.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, JIANG-HS</rights>
