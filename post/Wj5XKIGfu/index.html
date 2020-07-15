@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>梯度下降及线性回归 | JIANG-HS</title>
-<link rel="shortcut icon" href="https://JIANG-HS.github.io/favicon.ico?v=1594794302889">
+<link rel="shortcut icon" href="https://JIANG-HS.github.io/favicon.ico?v=1594811160212">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://JIANG-HS.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="梯度下降及线性回归 | JIANG-HS - Atom Feed" href="https://JIANG-HS.github.io/atom.xml">
@@ -13,9 +13,7 @@
 
     <meta name="description" content="一、梯度下降
 1.梯度下降简介
-梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。
-2.核心公式
-θi=θi−α∂..." />
+梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。寻找极小点时，从负梯度的方向寻找..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -25,7 +23,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://JIANG-HS.github.io">
-  <img class="avatar" src="https://JIANG-HS.github.io/images/avatar.png?v=1594794302889" alt="">
+  <img class="avatar" src="https://JIANG-HS.github.io/images/avatar.png?v=1594811160212" alt="">
   </a>
   <h1 class="site-title">
     JIANG-HS
@@ -94,7 +92,7 @@
               <div class="post-content">
                 <h1 id="一-梯度下降">一、梯度下降</h1>
 <h2 id="1梯度下降简介">1.梯度下降简介</h2>
-<p>梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。</p>
+<p>梯度下降法（gradient descent）是一个最优化算法，也称为最速下降法（steepest descent）。常用于机器学习和人工智能当中用来递归性地逼近最小偏差模型。寻找极小点时，从负梯度的方向寻找。</p>
 <h2 id="2核心公式">2.核心公式</h2>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>θ</mi><mi>i</mi></msub><mo>=</mo><msub><mi>θ</mi><mi>i</mi></msub><mo>−</mo><mi>α</mi><mfrac><mi mathvariant="normal">∂</mi><mrow><mi mathvariant="normal">∂</mi><msub><mi>θ</mi><mi>i</mi></msub></mrow></mfrac><mi>J</mi><mo>(</mo><mi>θ</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">θ_{i}=θ_{i}-α\frac{∂}{∂θ_{i}}J(θ)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.20744em;vertical-align:-0.8360000000000001em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord" style="margin-right:0.05556em;">∂</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span></span></p>
