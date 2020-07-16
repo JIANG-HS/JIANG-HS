@@ -1,0 +1,341 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KNN算法实现鸢尾花数据集的分类 | JIANG-HS</title>
+<link rel="shortcut icon" href="https://JIANG-HS.github.io/favicon.ico?v=1594876616282">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://JIANG-HS.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="KNN算法实现鸢尾花数据集的分类 | JIANG-HS - Atom Feed" href="https://JIANG-HS.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="一、鸢尾花数据集
+Iris 鸢尾花数据集内包含 3 类，分别为山鸢尾（Iris-setosa）、变色鸢尾（Iris-versicolor）和维吉尼亚鸢尾（Iris-virginica），共 150 条记录，每类各 50 个数据，每条记录都有..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://JIANG-HS.github.io">
+  <img class="avatar" src="https://JIANG-HS.github.io/images/avatar.png?v=1594876616282" alt="">
+  </a>
+  <h1 class="site-title">
+    JIANG-HS
+  </h1>
+  <p class="site-description">
+    姜还是老的辣
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              KNN算法实现鸢尾花数据集的分类
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-16
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="一-鸢尾花数据集">一、鸢尾花数据集</h1>
+<p>Iris 鸢尾花数据集内包含 3 类，分别为山鸢尾（Iris-setosa）、变色鸢尾（Iris-versicolor）和维吉尼亚鸢尾（Iris-virginica），共 150 条记录，每类各 50 个数据，每条记录都有 4 项特征：花萼长度、花萼宽度、花瓣长度、花瓣宽度，可以通过这4个特征预测鸢尾花卉属于哪一品种。</p>
+<p>这是本文章所使用的鸢尾花数据集：<br>
+<img src="https://JIANG-HS.github.io/post-images/1594871083036.jpg" alt="" loading="lazy"><br>
+sl：花萼长度<br>
+sw：花萼宽度<br>
+pl：花瓣长度<br>
+pw：花瓣宽度<br>
+type：类别：（Iris-setosa、Iris-versicolor、Iris-virginica三类）</p>
+<h1 id="二-knn算法">二、KNN算法</h1>
+<p>K最近邻（KNN，K-NearestNeighbor）分类算法是数据挖掘分类技术中最简单的方法之一。<strong>所谓K最近邻，就是K个最近的邻居的意思</strong>，说的是每个样本都可以用它最接近的K个邻近值来代表。 K最近邻算法就是将数据集合中每一个记录进行分类的方法，是一个理论上比较成熟的方法，也是最简单的机器学习算法之一。<br>
+详细了解可以参考：<a href="https://jiang-hs.github.io/post/dIjHdNcg_/">KNN算法</a></p>
+<h1 id="三-简单步骤说明">三、简单步骤说明</h1>
+<p>（1）计算待测试数据与各训练数据的距离<br>
+（2）将计算的距离进行由小到大排序<br>
+（3）找出距离最小的k个值<br>
+（4）计算找出的值中每个类别的频次<br>
+（5）返回频次最高的类别</p>
+<h1 id="四-代码实现">四、代码实现</h1>
+<p>以下代码只考虑了花萼长度和花萼宽度两个因素<br>
+import pandas as pd<br>
+import matplotlib.pyplot as plt<br>
+import matplotlib<br>
+from math import sqrt</p>
+<pre><code>###############################数据准备####################################
+iris = pd.read_csv('E:\Python\Iris.csv')
+num_iris = len(iris)
+#将3种类型分别映射为0,1,2
+iris[&quot;type&quot;] = iris[&quot;type&quot;].map({&quot;Iris-setosa&quot;:0,&quot;Iris-versicolor&quot;:1,&quot;Iris-virginica&quot;:2})
+#定义一个测试集
+test_data = [[5.5,5.2,7.0,5.6],[3.6,2.3,2.9,3.2]]#[[花萼长度]，[花萼宽度]]，一共四个测试数据
+print(&quot;测试数据：&quot;)
+print(&quot;花萼长度：&quot;,end='')
+print(test_data[0])
+print(&quot;花萼宽度：&quot;,end='')
+print(test_data[1])
+
+###############################数据整理###################################
+iris_0 = [[],[]]
+iris_1 = [[],[]]
+iris_2 = [[],[]]#分别对应三种鸢尾花，两个子列表分别存储前两列的数据
+iris_type = iris.type
+for i in range(num_iris):
+    if iris_type[i] == 0:
+        iris_0[0].append(iris.sl[i])
+        iris_0[1].append(iris.sw[i])
+    elif iris_type[i] == 1:
+        iris_1[0].append(iris.sl[i])
+        iris_1[1].append(iris.sw[i])
+    else:
+        iris_2[0].append(iris.sl[i])
+        iris_2[1].append(iris.sw[i])
+
+########################KNN对测试集进行分类####################################
+#定义欧氏距离
+def Euclid(x1,y1,x2,y2):
+    d = sqrt((x1-x2)**2+(y1-y2)**2)
+    return d
+
+def _KNN_(x,y):
+    K = 5
+    #=================计算距离=====================#
+    distance_0 = []
+    distance_1 = []
+    distance_2 = []
+    distances = []
+    #计算并记录距离
+    for i in range(50):
+        d = Euclid(x,y,iris_0[0][i],iris_0[1][i])
+        distance_0.append(d)
+    for i in range(50):
+        d = Euclid(x,y,iris_1[0][i],iris_1[1][i])
+        distance_1.append(d)
+    for i in range(50):
+        d = Euclid(x,y,iris_2[0][i],iris_2[1][i])
+        distance_2.append(d)
+    #由小到大排序（此处使用冒泡排序）
+    distances = distance_0 + distance_1 + distance_2
+    for i in range(len(distances)-1):
+        for j in range(len(distances)-i-1):
+            if distances[j] &gt; distances[j+1]:
+                distances[j],distances[j+1]=distances[j+1],distances[j]
+    #===============决策划分====================#
+    #定义删除函数，避免对同一个数据重复计算
+    def delete(a,b,ls):
+        for i in range(b):
+            if ls[i] == a:
+                ls.pop(i)
+                break
+    #找出与测试数据最接近的K个点
+    number_0 = number_1 = number_2 = 0
+    for i in range(K):
+        if distances[i] in distance_0:
+            number_0 += 1
+            delete(distances[i],len(distance_0),distance_0)
+            continue
+        if distances[i] in distance_1:
+            number_1 += 1
+            delete(distances[i],len(distance_1),distance_1)
+            continue
+        if distances[i] in distance_2:
+            number_2 += 1
+            delete(distances[i],len(distance_2),distance_2)
+            continue
+
+    max_number = max(number_0,number_1,number_2)
+    if max_number == number_0:
+        return 0
+    elif max_number == number_1:
+        return 1
+    else:
+        return 2
+
+print(&quot;这四个测试数据分别属于:&quot;)
+for i in range(len(test_data[0])):
+    m=_KNN_(test_data[0][i],test_data[1][i])
+    if m == 0:
+        print(&quot;Iris-setosa&quot;)
+    elif m == 1:
+        print(&quot;Iris-versicolor&quot;)
+    else:
+        print(&quot;Iris-virginica&quot;)
+
+#########################画图####################################
+matplotlib.rcParams['font.sans-serif'] = ['SimHei']
+#训练集
+plt.scatter(iris_0[0],iris_0[1],marker='o',label='Iris-setosa',color='blue')
+plt.scatter(iris_1[0],iris_1[1],marker='x',label='Iris-versicolor',color='black')
+plt.scatter(iris_2[0],iris_2[1],marker='s',label='Iris-virginica',color='green')
+#测试集
+plt.scatter(test_data[0],test_data[1],marker='^',label='测试数据',color='red')
+plt.legend()
+plt.show()
+</code></pre>
+<p>代码运行结果：<br>
+<img src="https://JIANG-HS.github.io/post-images/1594870597570.png" alt="" loading="lazy"><br>
+测试数据：<br>
+花萼长度：[5.5, 5.2, 7.0, 5.6]<br>
+花萼宽度：[3.6, 2.3, 2.9, 3.2]<br>
+这四个测试数据分别属于:<br>
+Iris-setosa<br>
+Iris-versicolor<br>
+Iris-virginica<br>
+Iris-versicolor</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E9%B8%A2%E5%B0%BE%E8%8A%B1%E6%95%B0%E6%8D%AE%E9%9B%86">一、鸢尾花数据集</a></li>
+<li><a href="#%E4%BA%8C-knn%E7%AE%97%E6%B3%95">二、KNN算法</a></li>
+<li><a href="#%E4%B8%89-%E7%AE%80%E5%8D%95%E6%AD%A5%E9%AA%A4%E8%AF%B4%E6%98%8E">三、简单步骤说明</a></li>
+<li><a href="#%E5%9B%9B-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">四、代码实现</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://JIANG-HS.github.io/post/dIjHdNcg_/">
+              <h3 class="post-title">
+                K最近邻分类算法（KNN）分析及实现
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://JIANG-HS.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
