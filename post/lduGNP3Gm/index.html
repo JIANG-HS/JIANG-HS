@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>卷积神经网络 | JIANG-HS</title>
-<link rel="shortcut icon" href="https://JIANG-HS.github.io/favicon.ico?v=1596536336279">
+<link rel="shortcut icon" href="https://JIANG-HS.github.io/favicon.ico?v=1597834227864">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://JIANG-HS.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="卷积神经网络 | JIANG-HS - Atom Feed" href="https://JIANG-HS.github.io/atom.xml">
@@ -31,7 +31,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://JIANG-HS.github.io">
-  <img class="avatar" src="https://JIANG-HS.github.io/images/avatar.png?v=1596536336279" alt="">
+  <img class="avatar" src="https://JIANG-HS.github.io/images/avatar.png?v=1597834227864" alt="">
   </a>
   <h1 class="site-title">
     JIANG-HS
@@ -149,7 +149,7 @@
 <p> 下面将介绍池化层，池化层夹在连续的卷积层中间， 用于压缩数据和参数的量，减小过拟合。简而言之，如果输入是图像的话，那么池化层的最主要作用就是压缩图像。<br>
  通常使用的池化操作为<strong>平均值池化（average-pooling）</strong> 和<strong>最大值池化（max-pooling）</strong>。需要指出的是，同卷积层操作不同，池化层不包含需要学习的参数，使用时仅需指定<strong>池化类型</strong>（average 或 max）、<strong>池化操作的核大小</strong>（kernel size） 和 <strong>池化操作的步长</strong>（stride）等超参数即可。平均值（最大值）池化在每次操作时，将池化核覆盖区域中所有值的平均值（最大值）作为池化结果。</p>
 <p> 接下来我们就举例说明池化层到底是如何实现的。下图中，池化核的大小为2*2，池化操作的步长为2。<br>
-<img src="https://JIANG-HS.github.io/post-images/1596524052019.jpeg" alt="" loading="lazy"><br>
+<img src="https://JIANG-HS.github.io/post-images/1596524052019.jpeg" alt="" width="500" loading="lazy"><br>
  首先对黄色（左上角1,3,1,3）的2*2区域进行池化，由于此2×2区域的平均值为2（最大值为3），那么对应的池化输出位置的值也为2（3），由于步幅为2，此时移动到红色（右上角2,4,2,4）的位置去进行池化，输出的平均值为3（最大值为4）。同样的方法，可以得到蓝色区域（左下角5,7,5,7）和 橙色区域（右下角6,8,6,8）的输出值。最终，输入4*4的矩阵在池化后变成了2*2的矩阵，进行了压缩。</p>
 <p> 在上面的例子中可以发现，池化操作后的结果相比其输入变了，其实池化操作实际上就是一种“<strong>下采样</strong>”操作。另一方面，池化也可以看成是一个用p范数作为非线性映射的“卷积”操作，特别的，当p趋近正无穷时就是最常见的最大值池化。<br>
 池化层的引入是仿照人的视觉系统对视觉输入对象进行降维（下采样）和抽象。在卷积神经网络过去的工作中，研究者普遍认为池化层有如下3种功效：</p>
